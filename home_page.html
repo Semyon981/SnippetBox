@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <title>Домашняя страница - Snippetbox</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href='/'>Snippetbox</a></h1>
+            <link rel='stylesheet' href='/static/css/main.css'>
+            <link rel='shortcut icon' href='/static/img/favicon.ico' type='image/x-icon'>
+            <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700'>
+        </header>
+        <nav>
+            <a href="/">Домашняя страница</a>
+        </nav>
+        <main>        
+                <h2>Последние заметки</h2>
+                <a href='/create'>Новая</a>
+            {{if .Snippets}}
+                <table>
+                <tr>
+                    <th>Заголовок</th>
+                    <th>Создан</th>
+                    <th>ID</th>
+                    <th></th>
+                </tr>
+                {{range .Snippets}}
+                    <tr>
+                        <td><a href='/snippet?id={{.ID}}'>{{.Title}}</a></td>
+                        <td>{{.DateTime}}</td>
+                        <td>{{.ID}}</td>
+                        <td><a href='/delete?id={{.ID}}'>Удалить</a></td>
+                    </tr>
+                {{end}}
+                </table>
+            {{else}}
+                <p>Здесь ничего нет... пока что!</p>
+            {{end}}            
+        </main>
+        <footer>Сайт создан на <strong>Golang</strong></footer>
+    </body>
+</html>

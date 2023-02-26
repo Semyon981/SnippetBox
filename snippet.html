@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <title>Домашняя страница - Snippetbox</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href='/'>Snippetbox</a></h1>
+            <link rel='stylesheet' href='/static/css/main.css'>
+            <link rel='shortcut icon' href='/static/img/favicon.ico' type='image/x-icon'>
+            <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700'>
+        </header>
+        <nav>
+            <a href="/">Домашняя страница</a>
+        </nav>
+        <main>
+            <style>
+                textarea { resize: none; }
+            </style>
+            {{define "title"}}Заметка {{.ID}}{{end}}
+            <div class='snippet'>
+                  
+                <form action="/process?id={{.ID}}" method="post">                
+                        <strong><textarea name="textTitle" cols="1" rows="1" style="width:600px; height:60px;">{{.Title}}</textarea></strong>
+                        <span>ID: {{.ID}}</span>
+                    <textarea name="textNote" cols="1" rows="3">{{.Note}}</textarea>
+                
+                    <div class='metadata'>
+                        <a href='/delete?id={{.ID}}'>Удалить</a>
+                        <time>Создан:{{.DateTime}}</time>
+                        <input type="submit" value="Сохранить"/>
+                    </div>
+                </form>
+                             
+            </div>
+        </main>
+        <footer>Сайт создан на <strong>Golang</strong></footer>
+    </body>
+</html>
